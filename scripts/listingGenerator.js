@@ -17,13 +17,15 @@
 // 	]
 // };
 
-load('/Users/hpradip/Desktop/cities.js');
+load('cities.js');
 
 var createListings = function (count) {
+	var listings = [];
 	for (var i = 0; i < count; i++) {
 		var listing = getRandomListing();
-		db.listings.insert(listing);
+		listings.push(listing);
 	}
+	db.listings.insert(listings);
 };
 
 var getRandomListing = function(){
