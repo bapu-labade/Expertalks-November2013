@@ -9,7 +9,7 @@ var Categories = function(){
 			console.log("Could not connect to MongoDB. " + error);
 		}else{
 			console.log("Connected to MongoDb" );
-			this.db = client.db("experTalks_demo");
+			this.db = client.db("expertalks_demo");
 			console.log("Connected to ExperTalks.");
 		}
 	});

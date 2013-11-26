@@ -22,14 +22,32 @@ load('stores.js');
 
 var categories = ["Food","Entertainment", "Hotel", "Sports", "Health & Beauty", "Travel", "Education", "Real Estate"];
 
-var createListings = function (count) {
+var createListings = function (count,batchSize) {
 	createCategories();
+	if(!batchSize){
+		batchSize = 1000;
+	}
+
+	if(batchSize > count){
+		batchSize = 0
+	}
+
 	var listings = [];
-	for (var i = 0; i < count; i++) {
+	for (var i = 1; i <= count; i++) {
 		var listing = getRandomListing();
 		listings.push(listing);
+		
+		if(listings.length>batchSize){
+			db.listings.insert(listings);
+			listings = [];
+		}
+			
+		var percentDone = i*100/count;
+
+		if(percentDone%10 == 0){
+			print( percentDone + "% done");
+		}
 	}
-	db.listings.insert(listings);
 };
 
 var createCategories = function(){
@@ -72,7 +90,7 @@ var getAverageRating = function(reviews){
 };
 
 var getRandomTitle = function(){
-	return stores[getPositiveRandomInt(stores.length-1)];
+	return stores[getPositiveRandomInt(stores.length)];
 };
 
 var getRandomText = function(maxLength){
@@ -100,8 +118,8 @@ var getRandomDescription = function(){
 };
 
 var getRandomAddress = function(){
-	var state = states[getPositiveRandomInt(states.length-1)];
-	var city = state.cities[getPositiveRandomInt(state.cities.length-1)];
+	var state = states[getPositiveRandomInt(states.length)];
+	var city = state.cities[getPositiveRandomInt(state.cities.length)];
 	return {
 		city : city,
 		state : state.name
@@ -109,7 +127,7 @@ var getRandomAddress = function(){
 };
 
 var getRandomCategory = function(){
-		return categories[getPositiveRandomInt(categories.length-1)];
+		return categories[getPositiveRandomInt(categories.length)];
 };
 
 var getRandomReviews = function(){
