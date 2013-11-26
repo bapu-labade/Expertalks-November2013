@@ -1,8 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var Server = require('mongodb').Server;
 
-var allCategories = ["Food","Entertainment", "Hotel", "Sports", "Health & Beauty", "Travel", "Education", "Real Estate"];
-
 var Categories = function(){
 	this.mongoClient = new MongoClient(new Server('localhost','27017',{auto_reconnect: true},{}));
 	self = this;
@@ -11,18 +9,33 @@ var Categories = function(){
 			console.log("Could not connect to MongoDB. " + error);
 		}else{
 			console.log("Connected to MongoDb" );
-			this.db = client.db("expertalks");
+			this.db = client.db("experTalks_demo");
 			console.log("Connected to ExperTalks.");
 		}
 	});
 };
 
 Categories.prototype.getCategories = function(req,res){
-		res.render("categories",
+	this.db.collection('categories', function(error, collection) {
+    if( error )
+    	{
+    		res.render("error",
 			{
-				title : "Categories", 
-				categories: allCategories
+				title : "Rat in ther server", 
+				error: error
 			});
+    	}
+    else {
+	    	var cursor = collection.find().sort({"name" : 1});
+	    	cursor.toArray(function(err, categories){
+		    	res.render("categories",
+					{
+						title : "Categories" , 
+						categories: categories
+					});
+	    	});
+    	}
+    });
 };
 
 Categories.prototype.getListingsByCategory = function(req,res){

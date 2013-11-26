@@ -18,14 +18,25 @@
 // };
 
 load('cities.js');
+load('stores.js');
+
+var categories = ["Food","Entertainment", "Hotel", "Sports", "Health & Beauty", "Travel", "Education", "Real Estate"];
 
 var createListings = function (count) {
+	createCategories();
 	var listings = [];
 	for (var i = 0; i < count; i++) {
 		var listing = getRandomListing();
 		listings.push(listing);
 	}
 	db.listings.insert(listings);
+};
+
+var createCategories = function(){
+	db.categories.drop();
+	for (var i = 0; i < categories.length; i++) {
+		db.categories.insert({"name" : categories[i]});
+	}
 };
 
 var getRandomListing = function(){
@@ -61,7 +72,7 @@ var getAverageRating = function(reviews){
 };
 
 var getRandomTitle = function(){
-	return getRandomText(10);
+	return stores[getPositiveRandomInt(stores.length-1)];
 };
 
 var getRandomText = function(maxLength){
@@ -98,8 +109,7 @@ var getRandomAddress = function(){
 };
 
 var getRandomCategory = function(){
-	var categories = ["Food","Entertainment", "Hotel", "Sports", "Health & Beauty", "Travel", "Education", "Real Estate"];
-	return categories[getPositiveRandomInt(categories.length-1)];
+		return categories[getPositiveRandomInt(categories.length-1)];
 };
 
 var getRandomReviews = function(){

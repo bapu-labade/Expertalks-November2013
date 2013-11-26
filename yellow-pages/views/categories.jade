@@ -4,5 +4,5 @@ block content
 	ul.categoryList
 		- for category in categories
 			li
-				a("href"="/categories/#{category}")= category
+				a("href"="/categories/#{category.name}")= category.name
 		
