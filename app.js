@@ -4,15 +4,15 @@
  */
 
 var express = require('express');
-var routes = require('./controllers');
+var routes = require('./routes');
 
-var main = require('./controllers/index');
-var shops = require('./controllers/shops');
-var categories = require('./controllers/categories');
+var main = require('./routes/index');
+var shops = require('./routes/shops');
+var categories = require('./routes/categories');
 
 var http = require('http');
 var path = require('path');
-var mongodb = require('mongodb');
+var db = require('mongodb');
 
 var app = express();
 
@@ -37,10 +37,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', main);
+app.get('/', routes.index);
 app.get('/categories', categories.getCategories);
 app.get('/categories/:category', categories.getListingsByCategory);
-//app.get('/listings', shops.getShops);
+app.get('/listings', shops.getShops);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -1,0 +1,15 @@
+extends layout
+block content
+	h1= title
+	ul.listingsGrid
+		- for listing in listings
+			li
+				a("href"="/listings/#{listing._id}")
+					div
+						if listing.title.length == 0
+							div.title= "Test title"
+						else
+							div.title= listing.title
+						div.rating= listing.averageRating
+						div.city= listing.address.city
+		

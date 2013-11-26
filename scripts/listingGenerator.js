@@ -98,7 +98,7 @@ var getRandomAddress = function(){
 };
 
 var getRandomCategory = function(){
-	var categories = ["Food","Entertainment", "Hotel", "Sports", "Health & Beauty", "travel", "Eduction", "Real Estate"];
+	var categories = ["Food","Entertainment", "Hotel", "Sports", "Health & Beauty", "Travel", "Education", "Real Estate"];
 	return categories[getPositiveRandomInt(categories.length-1)];
 };
 
