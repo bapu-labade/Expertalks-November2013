@@ -39,7 +39,7 @@ Categories.prototype.getListingsByCategory = function(req,res){
 			});
     	}
     else {
-    	var limit = 10;
+    	var limit = 50;
     	console.log("Query %j",req.query);
     	var page = req.query.page;
     	if(!page){

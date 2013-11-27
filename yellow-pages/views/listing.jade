@@ -16,7 +16,7 @@ block content
 						div.review
 							div.reviewTitle= review.title
 							div.reviewRating= review.rating
-							div.postDate= review.postDate
+							div.postDate= review.postDate.getDate() +"/"+ review.postDate.getMonth() +"/"+ (review.postDate.getYear()+1900)
 							div.content= review.content
 
 
