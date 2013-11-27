@@ -1,22 +1,11 @@
-var MongoClient = require('mongodb').MongoClient;
-var Server = require('mongodb').Server;
+var mongo = require('./mongo')
 
 var Categories = function(){
-	this.mongoClient = new MongoClient(new Server('localhost','27017',{auto_reconnect: true},{}));
-	self = this;
-	this.mongoClient.open(function(error, client){
-		if(error){
-			console.log("Could not connect to MongoDB. " + error);
-		}else{
-			console.log("Connected to MongoDb" );
-			this.db = client.db("expertalks_demo");
-			console.log("Connected to ExperTalks.");
-		}
-	});
+	
 };
 
 Categories.prototype.getCategories = function(req,res){
-	this.db.collection('categories', function(error, collection) {
+	mongo.getCollection('categories', function(error, collection) {
     if( error )
     	{
     		res.render("error",
@@ -40,7 +29,7 @@ Categories.prototype.getCategories = function(req,res){
 
 Categories.prototype.getListingsByCategory = function(req,res){
 	console.log("Getting listings for category : " + req.params.category);
-	this.db.collection('listings', function(error, collection) {
+	mongo.getCollection('listings', function(error, collection) {
     if( error )
     	{
     		res.render("error",

@@ -7,7 +7,7 @@ var express = require('express');
 var routes = require('./controllers');
 
 var main = require('./controllers/index');
-var shops = require('./controllers/shops');
+var listings = require('./controllers/listings');
 var categories = require('./controllers/categories');
 
 var http = require('http');
@@ -40,7 +40,7 @@ if ('development' == app.get('env')) {
 app.get('/', main);
 app.get('/categories', categories.getCategories);
 app.get('/categories/:category', categories.getListingsByCategory);
-//app.get('/listings', shops.getShops);
+app.get('/listings/:id',listings.getById);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
