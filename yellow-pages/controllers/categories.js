@@ -39,14 +39,32 @@ Categories.prototype.getListingsByCategory = function(req,res){
 			});
     	}
     else {
-    	var cursor = collection.find({"category" : req.params.category},{"reviews" : 0}).limit(10);
-    	cursor.toArray(function(err, listings){
-	    	res.render("listings",
-				{
-					title : req.params.category , 
-					listings: listings
-				});
+    	var limit = 10;
+    	console.log("Query %j",req.query);
+    	var page = req.query.page;
+    	if(!page){
+    		page = 1;
+    	}
+    	console.log("Page : " + page);
+    	var skip = limit*(page-1);
+    	var query = {"category" : req.params.category};
+    	var proj ={"reviews" : 0};
+    	var count = collection.count(query, function (err, total) {
+    		if(err){
+    			console.log(err);
+    		}
+	    	var cursor = collection.find(query,proj).limit(limit).skip(skip);
+	    	cursor.toArray(function(err, listings){
+		    	res.render("listings",
+					{
+						title : req.params.category , 
+						listings: listings,
+						currentPage: page,
+						totalPages: parseInt(total/10)
+					});
+	    	});
     	});
+    	
     }
   });
 		

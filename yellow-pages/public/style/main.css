@@ -174,3 +174,28 @@ a{
 .listingDetails li{
 	margin: 10px;
 }
+
+.page{
+	text-align: right;
+	font-size: .8em;
+	margin-top:-50px;
+}
+
+.page div{
+	display: inline-block;
+	margin: 5px;
+}
+
+.previous, .next{
+	padding: 5px;
+	background-color: gray;
+	border-radius: 5px;
+	color:skyblue;
+	width:20px;
+	text-align: center;
+}
+
+.previous a, .next a{
+	color:white;
+	font-weight: bold;
+}

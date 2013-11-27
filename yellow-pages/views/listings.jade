@@ -1,6 +1,16 @@
 extends layout
 block content
 	h1= title
+	div.page
+		div= "Page " + currentPage + " of " + totalPages
+		if currentPage != 1
+			div.previous
+				a(href="?page=#{parseInt(currentPage)-1}")
+					<
+		if currentPage != totalPages
+			div.next
+				a(href="?page=#{parseInt(currentPage)+1}")
+					>
 	ul.listingsGrid
 		- for listing in listings
 			li
