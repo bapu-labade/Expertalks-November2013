@@ -20,7 +20,6 @@ Listings.prototype.getById = function(req,res) {
 				if(err){
 					console.log(error);
 				}
-				console.log(listing);
 				res.render("listing",{ title : listing.title, listing : listing});
 			})
 		}

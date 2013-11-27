@@ -1,16 +1,22 @@
 extends layout
 block content
 	h1= title
-	div.page
-		div= "Page " + currentPage + " of " + totalPages
-		if currentPage != 1
-			div.previous
-				a(href="?page=#{parseInt(currentPage)-1}")
-					<
-		if currentPage != totalPages
-			div.next
-				a(href="?page=#{parseInt(currentPage)+1}")
-					>
+	div.menu
+		div.sort
+			div.a_to_z
+				a(href="?sort=title")= "A-Z"
+			div.popular
+				a(href="?sort=averageRating")= "Most Popular"
+		div.page
+			div= "Page " + currentPage + " of " + totalPages
+			if currentPage != 1
+				div.previous
+					a(href="?page=#{parseInt(currentPage)-1}&sort=#{sort}")
+						<
+			if currentPage != totalPages
+				div.next
+					a(href="?page=#{parseInt(currentPage)+1}&sort=#{sort}")
+						>
 	ul.listingsGrid
 		- for listing in listings
 			li

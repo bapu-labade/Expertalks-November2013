@@ -120,7 +120,6 @@ a{
 
 .review .postDate{
 	float: right;
-	font-size: .8em;
 	padding: 5px;
 }
 
@@ -175,13 +174,13 @@ a{
 	margin: 10px;
 }
 
-.page{
+.menu{
 	text-align: right;
 	font-size: .8em;
 	margin-top:-50px;
 }
 
-.page div{
+.menu div{
 	display: inline-block;
 	margin: 5px;
 }
@@ -199,3 +198,16 @@ a{
 	color:white;
 	font-weight: bold;
 }
+
+.a_to_z, .popular{
+	padding: 5px;
+	border-radius: 5px;
+	display: inline-block;
+	margin: 5px;
+	background-color: gray;
+}
+
+.a_to_z a, .popular a{
+	color:white;
+}
+

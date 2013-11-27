@@ -39,28 +39,45 @@ Categories.prototype.getListingsByCategory = function(req,res){
 			});
     	}
     else {
-    	var limit = 50;
-    	console.log("Query %j",req.query);
+    	var limit = 20;
+    	var sort = req.query.sort;
+    	var order = 1;
+    	if(!sort){
+    		sort = {"title":1};
+    	}else{
+    		if(sort=="averageRating"){
+    			order = -1;
+    		}
+    		
+    		sort = JSON.parse("{ \"" + req.query.sort + "\" : "+ order +"}");
+    		console.log("sort = %j",sort);
+    	}
+
     	var page = req.query.page;
     	if(!page){
     		page = 1;
     	}
-    	console.log("Page : " + page);
     	var skip = limit*(page-1);
     	var query = {"category" : req.params.category};
     	var proj ={"reviews" : 0};
+    	var options = { fields : proj, sort : sort, limit :limit, skip :skip};
+    	console.log("options: %j", options)
     	var count = collection.count(query, function (err, total) {
     		if(err){
     			console.log(err);
     		}
-	    	var cursor = collection.find(query,proj).limit(limit).skip(skip);
+	    	var cursor = collection.find(query,options);
 	    	cursor.toArray(function(err, listings){
+	    		if(err){
+	    			console.log(err);
+	    		}
 		    	res.render("listings",
 					{
 						title : req.params.category , 
 						listings: listings,
 						currentPage: page,
-						totalPages: parseInt(total/10)
+						totalPages: parseInt(total/10),
+						sort: req.query.sort
 					});
 	    	});
     	});
