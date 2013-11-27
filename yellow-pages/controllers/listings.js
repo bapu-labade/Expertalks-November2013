@@ -1,18 +1,27 @@
 var mongo = require('./mongo');
+var ObjectID = require('mongodb').ObjectID;
 var Listings = function(){
 	
 }
 
 Listings.prototype.getById = function(req,res) {
-	var listingId = req.param.id 
-	
+	var listingId = req.params.id;
 	mongo.getCollection("listings",function(err,collection){
 		if(err){
-			req.render("error");
+			res.render("error",
+			{
+				title : "Rats in ther server", 
+				error: error
+			});
 		}
 		else{
-			collection.findOne({"_id":listingId},function(err,listing){
-				res.render("listing",listing);
+
+			collection.findOne({"_id": new ObjectID(listingId)},function(err,listing){
+				if(err){
+					console.log(error);
+				}
+				console.log(listing);
+				res.render("listing",{ title : listing.title, listing : listing});
 			})
 		}
 	})

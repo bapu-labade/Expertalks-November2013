@@ -1,4 +1,22 @@
 extends layout
 block content
-	h1.title= listing.title
-	div.description= listing.description
+	if !listing
+		h3= "Sorry! Could not find listing."
+	else
+		div.listingDetails
+			h1.title= listing.title
+			div.category= listing.category
+			div.ratings= listing.averageRating
+			div.city= listing.address.city + ", " + listing.address.state
+			div.description= listing.description
+			div.reviews
+				ul
+				for review in listing.reviews
+					li
+						div.review
+							div.reviewTitle= review.title
+							div.reviewRating= review.rating
+							div.postDate= review.postDate
+							div.content= review.content
+
+
