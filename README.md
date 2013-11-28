@@ -1,12 +1,14 @@
 Expertalks-November2013
 =======================
 
-<h1>Why my MongoDB is slow?</h1>
+<h2>Why my MongoDB is slow?</h2>
 
 This ExpertTalks focuses on the slow performance of MongoDB in the absense of indexes or incorrect indexes.
 This Git repo contains the example appliction which contains skeleton of a Yellow Pages applications using Node.js and MongoDB.
 
-<h2>Using scripts to generate data</h2>
+The presentation can be found at http://prezi.com/jmsea2wgrtr_/why-is-my-mongodb-slow/
+
+<h3>Using scripts to generate data</h3>
 
   - Go to <b>scripts</b> folder.
   - Make sure your MongoDB is running on localhost and port 27017.
@@ -40,7 +42,7 @@ The schema of our listing is as bellow:
 ```
 
 
-<h2>Running the Yellow Page app</h2>
+<h3>Running the Yellow Page app</h3>
 The Yellow Page test application is built using Node.js and Express. 
 To start the app 
   - Navigate to <b>yellow-pages</b> directory
