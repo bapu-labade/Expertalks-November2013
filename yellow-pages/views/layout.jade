@@ -7,8 +7,9 @@ html
 		header
 			img.eelogo(src='/img/eelogo.png')
 			div.title
-				p.titlePrimary= "Exper"
-				p.titleSecondary= "Talks"
-				p= " November 2013"
+				a(href="/")
+					p.titlePrimary= "Exper"
+					p.titleSecondary= "Talks"
+					p= " November 2013"
 		div.content
 			block content

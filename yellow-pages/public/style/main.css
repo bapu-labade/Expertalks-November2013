@@ -33,6 +33,10 @@ header p{
 
 }
 
+.backlink{
+	color:orange;
+}
+
 .content{
 	margin: 10px;
 }
@@ -86,14 +90,13 @@ a{
 }
 
 .listingsGrid .title{
-	background-color: rgba(50,50,50,.8);
-	color: white;
+	background: linear-gradient(lightskyblue,skyblue);
 	padding: 10px;
-	border-radius: 5px 5px 0 0;
+	font-size: .9em;
 }
 
 .listingsGrid .city{
-	color : black;
+	color : gray;
 	font-size: .9em;
 	padding: 10px;
 }

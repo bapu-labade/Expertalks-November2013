@@ -5,7 +5,8 @@ block content
 	else
 		div.listingDetails
 			h1.title= listing.title
-			div.category= listing.category
+			div.category
+				a("href"="/categories/#{listing.category}")= listing.category
 			div.ratings= listing.averageRating
 			div.location= listing.address.city + ", " + listing.address.state
 			div.description= listing.description
