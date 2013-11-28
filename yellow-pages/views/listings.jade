@@ -4,9 +4,15 @@ block content
 	div.menu
 		div.sort
 			div.a_to_z
-				a(href="?sort=title")= "A-Z"
+				if !sort || sort == "title"
+					a.active(href="?sort=title")= "A-Z"
+				else
+					a(href="?sort=title")= "A-Z"
 			div.popular
-				a(href="?sort=averageRating")= "Most Popular"
+				if sort == "averageRating"
+					a.active(href="?sort=averageRating")= "Most Popular"
+				else
+					a(href="?sort=averageRating")= "Most Popular"
 		div.page
 			div= "Page " + currentPage + " of " + totalPages
 			if currentPage != 1
@@ -17,15 +23,18 @@ block content
 				div.next
 					a(href="?page=#{parseInt(currentPage)+1}&sort=#{sort}")
 						>
-	ul.listingsGrid
-		- for listing in listings
-			li
-				a("href"="/listings/#{listing._id}")
-					div
-						if listing.title.length == 0
-							div.title= "Test title"
-						else
-							div.title= listing.title
-						div.rating= listing.averageRating
-						div.city= listing.address.city
-		
+	if !listings 
+		div.error= "Error occurred while getting listings for " + title + "!"
+	else
+		ul.listingsGrid
+			- for listing in listings
+				li
+					a("href"="/listings/#{listing._id}")
+						div
+							if listing.title.length == 0
+								div.title= "Test title"
+							else
+								div.title= listing.title
+							div.rating= listing.averageRating
+							div.city= listing.address.city
+			

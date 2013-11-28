@@ -37,6 +37,17 @@ header p{
 	margin: 10px;
 }
 
+.categories{
+	padding: 10px;
+	background-color: darkorange;
+	display:inline-block;
+	border-radius: 10px;
+}
+
+.categories a{
+	color:white;
+}
+
 ul{
 	list-style: none;
 	padding: 0px;
@@ -49,7 +60,7 @@ li {
 
 .categoryList li{
 	margin: 2px;
-	background-color : rgba(100,100,100,.2);
+	background-color : rgba(20,200,250,.3);
 	padding: 10px;
 	
 }
@@ -209,5 +220,9 @@ a{
 
 .a_to_z a, .popular a{
 	color:white;
+}
+
+.active{
+	display: none;
 }
 

@@ -30,6 +30,31 @@ app.use(express.session());
 app.use(express.compress());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public'),{ maxAge: 3600000 }));
+// app.use(new function(req,res,next){
+
+// 	    var limit = 20;
+//     	var sort = req.query.sort;
+//     	var order = 1;
+//     	if(!sort){
+//     		sort = {"title":1};
+//     	}else{
+//     		if(sort=="averageRating"){
+//     			order = -1;
+//     		}
+//     		sort = JSON.parse("{ \"" + req.query.sort + "\" : "+ order +"}");
+//     	}
+
+//     	var page = req.query.page;
+//     	if(!page){
+//     		page = 1;
+//     	}
+//     	var skip = limit*(page-1);
+//     	req.query.skip = skip;
+//     	req.query.page = page;
+//     	req.query.sort = sort;
+
+//     	next(req,res);
+// });
 
 
 // development only
